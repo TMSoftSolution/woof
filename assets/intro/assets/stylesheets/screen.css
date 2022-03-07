@@ -1,0 +1,397 @@
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes cloudOne {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-800%, 0, 0);
+  }
+}
+@keyframes cloudTwo {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-800%, 0, 0);
+  }
+}
+@keyframes cloudThree {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-700%, 0, 0);
+  }
+}
+@keyframes puff {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    fill-opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+    fill-opacity: 0.5;
+  }
+}
+@keyframes mapZoom {
+  0% {
+    transform: scale(1);
+  }
+  94% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.08);
+    opacity: 0;
+  }
+}
+@keyframes yellowZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(4);
+  }
+}
+@keyframes redPuff {
+  0% {
+    transform: scale(0);
+  }
+  3% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 1;
+  }
+}
+@keyframes bluePuff {
+  0% {
+    transform: scale(0);
+  }
+  4% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 1;
+  }
+}
+@keyframes greenPuff {
+  0% {
+    transform: scale(0);
+  }
+  6% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 1;
+  }
+}
+/* line 59, ../sass/screen.scss */
+body {
+  margin: 0;
+}
+
+/* line 62, ../sass/screen.scss */
+#viewport {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+/* line 66, ../sass/screen.scss */
+#viewport .phase {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+/* line 72, ../sass/screen.scss */
+#viewport .phase-1 {
+  padding-bottom: 119.84%;
+}
+
+/* line 76, ../sass/screen.scss */
+.street, .cloud, .pin {
+  position: absolute;
+}
+
+/* line 79, ../sass/screen.scss */
+.street {
+  bottom: 0;
+  left: -23.5%;
+  width: 147%;
+}
+
+/* line 84, ../sass/screen.scss */
+.cloud {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* line 88, ../sass/screen.scss */
+.cloud-1 {
+  width: 28.632%;
+  top: -0.4%;
+  left: 100%;
+  animation-name: cloudOne;
+  animation-duration: 30s;
+  animation-delay: 5s;
+}
+
+/* line 96, ../sass/screen.scss */
+.cloud-2 {
+  width: 42.865%;
+  top: 19%;
+  left: 100%;
+  animation-name: cloudTwo;
+  animation-duration: 26s;
+  animation-delay: 10s;
+}
+
+/* line 104, ../sass/screen.scss */
+.cloud-3 {
+  top: 36%;
+  width: 24.063%;
+  left: 100%;
+  animation-name: cloudOne;
+  animation-duration: 20s;
+}
+
+/* line 111, ../sass/screen.scss */
+.pin {
+  width: 23.352%;
+  left: 41.5%;
+  top: 56.25%;
+  transform: scale(0);
+  transform-origin: 50% 100%;
+}
+/* line 117, ../sass/screen.scss */
+.pin > svg {
+  overflow: visible;
+}
+/* line 120, ../sass/screen.scss */
+.pin .pulse {
+  transform-origin: center;
+}
+/* line 123, ../sass/screen.scss */
+.pin.puff {
+  animation-name: puff;
+  animation-delay: 2s;
+  animation-duration: 0.35s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0, 0, 0.4, 2);
+}
+/* line 129, ../sass/screen.scss */
+.pin.puff .pulse {
+  animation-name: pulse;
+  animation-delay: 2.35s;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+/* line 135, ../sass/screen.scss */
+.pin.puff .pulse-2 {
+  animation-delay: 3.01s;
+}
+/* line 138, ../sass/screen.scss */
+.pin.puff .pulse-3 {
+  animation-delay: 3.68s;
+}
+
+/* line 144, ../sass/screen.scss */
+.fadeOut .cloud, .fadeOut .pin .pulse {
+  animation-play-state: paused;
+}
+
+/* line 148, ../sass/screen.scss */
+.phase-2 {
+  padding-bottom: 119.84%;
+  overflow: hidden;
+  opacity: 0;
+}
+/* line 152, ../sass/screen.scss */
+.phase-2::after {
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: -1%;
+  width: 100%;
+  height: 40%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, white));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, white 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
+  /* W3C */
+}
+
+/* line 164, ../sass/screen.scss */
+.map {
+  position: absolute;
+  width: 1400%;
+  left: -655%;
+  top: -540%;
+  transform: translate3d(0, 0, 0);
+}
+/* line 170, ../sass/screen.scss */
+.map > img {
+  width: 100%;
+  height: auto;
+  opacity: 0.1;
+}
+/* line 175, ../sass/screen.scss */
+.map .radar {
+  width: 1.667%;
+  height: 1.675%;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+}
+/* line 181, ../sass/screen.scss */
+.map .radar.yellow {
+  background-color: #FEF25B;
+  top: 51.24%;
+  left: 49.75%;
+  transition-duration: 0.5s;
+  transform: translateY(0);
+}
+/* line 188, ../sass/screen.scss */
+.map .radar.red {
+  background-color: #FF7171;
+  opacity: 0;
+  transform: scale(0);
+}
+/* line 193, ../sass/screen.scss */
+.map .radar.blue {
+  background-color: #63BEFF;
+  opacity: 0;
+  transform: scale(0);
+}
+/* line 198, ../sass/screen.scss */
+.map .radar.green {
+  background-color: #05E6AE;
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* line 207, ../sass/screen.scss */
+.fadeIn .map .radar.yellow {
+  top: 49.56%;
+}
+
+/* line 212, ../sass/screen.scss */
+.map.zoom {
+  animation-name: mapZoom;
+  animation-duration: 16s;
+  animation-fill-mode: forwards;
+}
+/* line 216, ../sass/screen.scss */
+.map.zoom .radar {
+  animation-duration: 12s;
+  animation-delay: 3s;
+  animation-name: yellowZoom;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+/* line 223, ../sass/screen.scss */
+.map.zoom .radar.red {
+  left: 44%;
+  top: 55%;
+  animation-name: redPuff;
+  animation-delay: 6s;
+  animation-duration: 7s;
+}
+/* line 230, ../sass/screen.scss */
+.map.zoom .radar.blue {
+  left: 41%;
+  top: 46%;
+  animation-name: bluePuff;
+  animation-delay: 8s;
+  animation-duration: 5s;
+}
+/* line 237, ../sass/screen.scss */
+.map.zoom .radar.green {
+  left: 56%;
+  top: 42%;
+  animation-name: greenPuff;
+  animation-delay: 10s;
+  animation-duration: 3s;
+}
+
+/* line 246, ../sass/screen.scss */
+.radar.svg-holder > svg {
+  width: 65%;
+  margin-left: 18%;
+  margin-top: 6%;
+}
+
+/* line 252, ../sass/screen.scss */
+#loading {
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+
+/* line 261, ../sass/screen.scss */
+#spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+/* line 266, ../sass/screen.scss */
+.svg-holder > svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 270, ../sass/screen.scss */
+.fadeOut, .fadeIn {
+  animation-name: fadeOut;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* line 277, ../sass/screen.scss */
+.fadeIn {
+  animation-name: fadeIn;
+}

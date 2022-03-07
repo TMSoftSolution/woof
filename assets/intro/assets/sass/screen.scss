@@ -1,0 +1,279 @@
+@keyframes fadeOut {
+	0%   {opacity: 1}
+	100% {opacity: 0}
+}
+@keyframes fadeIn {
+	0%   {opacity: 0}
+	100% {opacity: 1}
+}
+@keyframes cloudOne {
+	0%   {transform: translate3d(0,0,0)}
+	100% {transform: translate3d(-800%,0,0)}
+}
+@keyframes cloudTwo {
+	0%   {transform: translate3d(0,0,0)}
+	100% {transform: translate3d(-800%,0,0)}
+}
+@keyframes cloudThree {
+	0%   {transform: translate3d(0,0,0)}
+	100% {transform: translate3d(-700%,0,0)}
+}
+@keyframes puff {
+	0%   {transform:scale(0)}
+	100% {transform:scale(1)}
+}
+@keyframes pulse{
+	0%   {transform:scale(1); opacity:1; fill-opacity: 1}
+	20%  {opacity: 1}
+	100% {transform:scale(1.5); opacity:0; fill-opacity: 0.5}
+}
+@keyframes mapZoom{
+	0%   {transform: scale(1)}
+	94%  {transform: scale(0.2); opacity: 1;}
+	100% {transform: scale(0.08); opacity: 0; }
+}
+@keyframes yellowZoom{
+	0%   {transform: scale(1)}
+	100% {transform: scale(4)}
+}
+@keyframes redPuff{
+	0%   {transform: scale(0)}
+	3%   {transform: scale(1); opacity: 1}
+	100% {transform: scale(4); opacity: 1}
+}
+@keyframes bluePuff{
+	0%   {transform: scale(0)}
+	4%   {transform: scale(1); opacity: 1}
+	100% {transform: scale(4); opacity: 1}
+}
+@keyframes greenPuff{
+	0%   {transform: scale(0)}
+	6%   {transform: scale(1); opacity: 1}
+	100% {transform: scale(4); opacity: 1}
+}
+//colors
+$yellow: #FEF25B;
+$red: #FF7171;
+$blue: #63BEFF;
+$green: #05E6AE;
+body{
+	margin:0;
+}
+#viewport{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	.phase{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+	.phase-1{
+		padding-bottom: 119.84%;
+	}
+}
+.street, .cloud, .pin{
+	position: absolute;
+}
+.street{
+	bottom: 0;
+    left: -23.5%;
+    width: 147%;
+}
+.cloud{
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.cloud-1{
+	width: 28.632%;
+    top: -0.4%;
+    left: 100%;
+    animation-name: cloudOne;
+    animation-duration: 30s;
+    animation-delay: 5s;
+}
+.cloud-2{
+	width: 42.865%;
+	top: 19%;
+	left: 100%;
+	animation-name: cloudTwo;
+    animation-duration: 26s;
+    animation-delay: 10s;
+}
+.cloud-3{
+	top: 36%;
+	width: 24.063%;
+	left: 100%;
+	animation-name: cloudOne;
+    animation-duration: 20s;
+}
+.pin{
+	width: 23.352%;
+    left: 41.5%;
+    top: 56.25%;
+    transform: scale(0);
+	transform-origin: 50% 100%;
+	&>svg{
+		overflow: visible;
+	}
+	.pulse{
+		transform-origin: center;
+	}
+    &.puff{
+    	animation-name: puff;
+    	animation-delay: 2s;
+    	animation-duration: 0.35s;
+    	animation-fill-mode: forwards;
+    	animation-timing-function: cubic-bezier(0,0,0.4,2);
+    	.pulse{
+    		animation-name: pulse;
+    		animation-delay: 2.35s;
+    		animation-duration: 3s;
+			animation-iteration-count: infinite;
+    	}
+		.pulse-2{
+			animation-delay: 3.01s;
+		}
+		.pulse-3{
+			animation-delay: 3.68s;
+		}
+    }
+}
+.fadeOut {
+	.cloud, .pin .pulse{
+		animation-play-state: paused;
+	}
+}
+.phase-2{
+	padding-bottom: 119.84%;
+	overflow: hidden;
+	opacity: 0;
+	&::after{
+		display: block;
+		content: "";
+		position: absolute;
+		bottom: -1%;
+		width: 100%;
+		height: 40%;
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+		background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
+	}
+}
+.map{
+    position: absolute;
+    width: 1400%;
+    left: -655%;
+    top: -540%;
+    transform: translate3d(0, 0, 0);
+    &>img{
+    	width: 100%;
+    	height: auto;
+    	opacity: 0.1;
+    }
+    .radar{
+    	width: 1.667%;
+    	height: 1.675%;
+    	border-radius: 50%;
+    	position: absolute;
+    	transform: translate3d(0, 0, 0);
+    	&.yellow{
+    		background-color: $yellow;
+			top: 51.24%;
+			left: 49.75%;
+			transition-duration: 0.5s;
+			transform: translateY(0);
+    	}
+    	&.red{
+    		background-color: $red;
+    		opacity: 0;
+    		transform: scale(0);
+    	}
+    	&.blue{
+    		background-color: $blue;
+    		opacity: 0;
+    		transform: scale(0);
+    	}
+    	&.green{
+    		background-color: $green;
+    		opacity: 0;
+    		transform: scale(0);
+    	}
+    }
+}
+.fadeIn{
+	.map{
+		.radar.yellow{
+			top: 49.56%;
+		}
+	}
+}
+.map.zoom{
+	animation-name: mapZoom;
+	animation-duration: 16s;
+	animation-fill-mode: forwards;
+	.radar{
+		animation-duration: 12s;
+		animation-delay: 3s;
+		animation-name: yellowZoom;
+		animation-fill-mode: forwards;
+		animation-timing-function: linear;
+	}
+	.radar.red{
+		left: 44%;
+		top: 55%;
+		animation-name: redPuff;
+		animation-delay: 6s;
+		animation-duration: 7s;
+	}
+	.radar.blue{
+		left: 41%;
+		top: 46%;
+		animation-name: bluePuff;
+		animation-delay: 8s;
+		animation-duration: 5s;
+	}
+	.radar.green{
+		left: 56%;
+		top: 42%;
+		animation-name: greenPuff;
+		animation-delay: 10s;
+		animation-duration: 3s;
+	}
+}
+.radar{
+	&.svg-holder > svg{
+		width: 65%;
+		margin-left: 18%;
+		margin-top: 6%;
+	}
+}
+#loading{
+	position: fixed;
+	background-color: #fff;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 1;
+}
+#spinner{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+.svg-holder > svg{
+	width: 100%;
+	height: 100%;
+}
+.fadeOut, .fadeIn{
+	animation-name: fadeOut;
+	animation-iteration-count: 1;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+.fadeIn{
+	animation-name: fadeIn;
+}
